@@ -1,0 +1,21 @@
+{
+  "name": "jsxlsxio",
+  "version": "1.0.0",
+  "description": "Node.js of Xlsxio library to manipulate Excel files",
+  "main": "index.js",
+  "scripts": {
+    "build": "node-gyp --release --no-debug build",
+    "build:debug": "node-gyp --debug build",
+    "clean": "node-gyp clean",
+    "configure": "node-gyp --release --no-debug configure",
+    "configure:debug": "node-gyp --debug configure",
+    "rebuild": "node-gyp --release --no-debug rebuild",
+    "rebuild:debug": "node-gyp --debug rebuild",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Guillaume Pirou <guillaume.pirou@epitech.eu>",
+  "license": "MIT",
+  "devDependencies": {
+    "node-gyp": "^3.8.0"
+  }
+}
