@@ -27,7 +27,38 @@
 	  	"libraries": [
 				"-L./deps/lib/",
 	  	  "-lxlsxio_read"
-	  	]
+	  	],
+			"cflags": [
+				"-Wall",
+				"-Wextra",
+				"-O2"
+			],
+			"cflags_cc": [
+				"-std=c++17",
+				"-O2",
+				"-Wall",
+				"-Wextra"
+			],
+			"conditions": [
+				[
+					'OS == "mac"',
+					{
+						"xcode_settings": {
+							"OTHER_CFLAGS": [
+								"-Wall",
+								"-Wextra",
+								"-O2"
+							],
+							"OTHER_CPLUSPLUSFLAGS": [
+								"-std=c++17",
+								"-Wall",
+								"-Wextra",
+								"-O2"
+							]
+						},
+					}
+				]
+			]
 		}
 	]
 }
