@@ -268,3 +268,9 @@ __pycache__/
 
 *.node
 *log*.txt
+
+# Sonar
+
+bw-output/
+.scannerwork/
+sonar.sh

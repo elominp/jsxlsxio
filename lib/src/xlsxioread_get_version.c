@@ -4,6 +4,8 @@
 
 static napi_value xlsxioread_get_version_wrapper(napi_env env,
                                                  napi_callback_info info) {
+  (void)info;
+
   napi_value ret;
   napi_value ret_major;
   napi_value ret_minor;

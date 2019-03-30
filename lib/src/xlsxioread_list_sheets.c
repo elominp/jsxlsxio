@@ -29,6 +29,8 @@ static void xlsxioread_list_sheets_destroy_napi_async(void) {
 
 static int xlsxioread_list_sheets_callback(const XLSXIOCHAR *name,
                                            void *callbackdata) {
+  (void)callbackdata;
+
   napi_value argv[2];
   napi_value tocall;
   napi_value global;
