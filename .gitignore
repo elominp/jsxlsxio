@@ -274,3 +274,7 @@ __pycache__/
 bw-output/
 .scannerwork/
 sonar.sh
+
+# Node CI
+
+prebuilt/

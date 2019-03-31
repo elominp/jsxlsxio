@@ -1,4 +1,4 @@
-const jsxlsxio = require('../build/Release/JsXlsxio.node');
+const jsxlsxio = require('jsxlsxio');
 const fs = require('fs');
 
 console.log(jsxlsxio.xlsxioread_get_version());
