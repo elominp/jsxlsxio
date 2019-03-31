@@ -1,6 +1,6 @@
 {
   "name": "jsxlsxio",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Node.js wrapper of xlsxio library to manipulate Excel files",
   "main": "index.js",
   "scripts": {
@@ -10,6 +10,7 @@
     "compile:debug": "npm run clean && npm run configure:debug && node-gyp --debug build",
     "configure": "node-gyp --release --no-debug configure",
     "configure:debug": "node-gyp --debug configure",
+    "install": "npm run build",
     "rebuild": "node-gyp --release --no-debug rebuild",
     "rebuild:debug": "node-gyp --debug rebuild",
     "test": "echo \"Error: no test specified\" && exit 1"
