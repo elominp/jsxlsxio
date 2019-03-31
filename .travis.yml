@@ -1,0 +1,46 @@
+language: node_js
+
+node_js:
+  - '6'
+  - '8'
+  - '10'
+
+os:
+  - linux
+  - osx
+
+compiler:
+  - clang
+
+addons:
+  apt:
+    packages:
+      - libexpat-dev
+      - libminizip-dev
+
+cache:
+  directories:
+    - node_modules
+
+before_install:
+  - npm prune
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install expat; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install minizip; fi
+
+before_script:
+  - echo "todo compile xlsxio"
+
+script:
+  - npm run compile
+
+after_script:
+  - echo "todo run tests"
+  - echo "todo copy compiled native modules"
+
+matrix:
+  include:
+    - os: linux
+      dist: trusty
+    - os: osx
+      osx_image: xcode9.4

@@ -13,7 +13,7 @@
     "install": "npm run build",
     "rebuild": "node-gyp --release --no-debug rebuild",
     "rebuild:debug": "node-gyp --debug rebuild",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\""
   },
   "author": "Guillaume Pirou <guillaume.pirou@epitech.eu>",
   "license": "MIT",
