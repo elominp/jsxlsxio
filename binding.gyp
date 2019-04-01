@@ -25,7 +25,7 @@
 				"./deps/include"
 	  	],
 	  	"libraries": [
-				"-L./deps/lib",
+				"-L../deps/lib",
 	  	  "-lxlsxio_read"
 	  	],
 			"cflags": [
