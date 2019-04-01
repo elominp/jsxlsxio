@@ -22,10 +22,10 @@
       ],
 	  	"include_dirs": [
 	  		"./lib/include",
-				"./deps/include/xlsxio"
+				"./deps/include"
 	  	],
 	  	"libraries": [
-				"-L./deps/lib/",
+				"-L./deps/lib",
 	  	  "-lxlsxio_read"
 	  	],
 			"cflags": [
@@ -34,7 +34,7 @@
 				"-O2"
 			],
 			"cflags_cc": [
-				"-std=c++17",
+				# "-std=c++17",
 				"-O2",
 				"-Wall",
 				"-Wextra"
