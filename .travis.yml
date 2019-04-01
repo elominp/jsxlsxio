@@ -4,10 +4,6 @@ node_js:
   # - '8'
   - '10'
 
-os:
-  - linux
-  # - osx
-
 cache:
   directories:
     - node_modules
@@ -18,8 +14,6 @@ before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update ; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install expat; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install minizip; fi
-
-before_script:
   - ./scripts/compile_xlsxio.sh
 
 script:
@@ -45,8 +39,8 @@ matrix:
             - libminizip-dev
       env:
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
-    - os: osx
-      osx_image: xcode8
-      env:
+    # - os: osx
+      # osx_image: xcode8
+      # env:
         # - MATRIX_EVAL="brew install cmake gcc && CC=gcc-7 && CXX=g++-7"
-        - MATRIX_EVAL=""
+        # - MATRIX_EVAL=""
