@@ -22,7 +22,7 @@
       ],
 	  	"include_dirs": [
 	  		"./lib/include",
-				"./deps/include"
+				"../deps/include"
 	  	],
 	  	"libraries": [
 				"-L../deps/lib",
