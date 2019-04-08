@@ -26,7 +26,9 @@
 	  	],
 	  	"libraries": [
 				"-L../deps/lib",
-	  	  "-lxlsxio_read"
+	  	  "-lxlsxio_read",
+				"-lexpat",
+				"-lminizip"
 	  	],
 			"cflags": [
 				"-Wall",
