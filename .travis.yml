@@ -11,10 +11,10 @@ cache:
 before_install:
   - npm prune
   - eval "${MATRIX_EVAL}"
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update ; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install expat; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install minizip; fi
-  - ./scripts/compile_xlsxio.sh
+  # - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update ; fi
+  # - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install expat; fi
+  # - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install minizip; fi
+  - node ./scripts/compile_xlsxio.js
 
 script:
   - npm run compile
@@ -35,12 +35,17 @@ matrix:
             - g++-7
             - cmake
             - git
-            - libexpat-dev
-            - libminizip-dev
+            # - libexpat-dev
+            # - libminizip-dev
       env:
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
-    # - os: osx
-      # osx_image: xcode8
-      # env:
-        # - MATRIX_EVAL="brew install cmake gcc && CC=gcc-7 && CXX=g++-7"
-        # - MATRIX_EVAL=""
+    - os: osx
+      osx_image: xcode8
+      env:
+        - MATRIX_EVAL="brew install cmake"
+    - windows:
+      install:
+        - choco install windows-sdk-10-version-1809-all
+      env:
+        - MSBUILD_PATH="c:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin"
+        - MATRIX_EVAL="export PATH=$MSBUILD_PATH:$PATH"

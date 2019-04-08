@@ -278,3 +278,4 @@ sonar.sh
 # Node CI
 
 prebuilt/
+deps/
