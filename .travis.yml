@@ -43,7 +43,7 @@ matrix:
       osx_image: xcode8
       env:
         - MATRIX_EVAL="brew install cmake"
-    - windows:
+    - os: windows
       install:
         - choco install windows-sdk-10-version-1809-all
       env:
