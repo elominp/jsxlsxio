@@ -4,8 +4,8 @@ const cwd = process.cwd();
 const prefix = `${cwd}/deps`;
 const platform = process.platform;
 const build_type = 'Release';
-const windows_sdk_version = '10.0.17134.0';
-//const windows_sdk_version = '10.0.17763.0';
+//const windows_sdk_version = '10.0.17134.0';
+const windows_sdk_version = '10.0.17763.0';
 
 fs.mkdir('deps', (err) => {
   if (err) {
@@ -33,8 +33,10 @@ fs.mkdir('deps', (err) => {
     if (platform === 'win32') {
       process.chdir('./contrib/vstudio/vc14');
       child_process.execSync(`msbuild zlibvc.sln /p:Configuration=${build_type};PlatformToolset=v141;WindowsTargetPlatformVersion=${windows_sdk_version}`);
-      fs.renameSync('./x64/ZlibStatRelease/zlibstat.lib', `${prefix}/minizip.lib`);
+      fs.renameSync('./x64/ZlibStatRelease/zlibstat.lib', `${prefix}/lib/minizip.lib`);
       process.chdir('../../../..');
+      fs.renameSync('./zlib', `${prefix}/include/zlib`);
+      fs.renameSync(`${prefix}/include/zlib/contrib/minizip`, `${prefix}/include/minizip`);
     } else {
       fs.mkdirSync('./build');
       process.chdir('./build');

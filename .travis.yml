@@ -1,7 +1,6 @@
 language: node_js
 
 node_js:
-  # - '8'
   - '10'
 
 cache:
@@ -35,17 +34,15 @@ matrix:
             - g++-7
             - cmake
             - git
-            # - libexpat-dev
-            # - libminizip-dev
       env:
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
     - os: osx
       osx_image: xcode8
       env:
-        - MATRIX_EVAL="brew install cmake"
+        - MATRIX_EVAL=""
     - os: windows
       install:
         - choco install windows-sdk-10-version-1809-all
       env:
-        - MSBUILD_PATH="c:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin"
+        - MSBUILD_PATH="c:/Program Files \(x86\)/Microsoft Visual Studio/2017/BuildTools/MSBuild/15.0/Bin"
         - MATRIX_EVAL="export PATH=$MSBUILD_PATH:$PATH"
