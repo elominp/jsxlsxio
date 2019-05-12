@@ -18,11 +18,12 @@
 				"./lib/src/xlsxioread_sheet_next_cell_int.c",
 				"./lib/src/xlsxioread_sheet_next_cell_string.c",
 				"./lib/src/xlsxioread_sheet_next_row.c",
-				"./lib/src/xlsxioread_sheet_open.c"
+				"./lib/src/xlsxioread_sheet_open.c",
+				"./lib/src/jsxlsxio_log.c"
       ],
 	  	"include_dirs": [
 	  		"./lib/include",
-				"../deps/include"
+				"./deps/include"
 	  	],
 	  	"libraries": [
 				"-L../deps/lib",
@@ -33,13 +34,17 @@
 			"cflags": [
 				"-Wall",
 				"-Wextra",
-				"-O2"
+				"-O2",
+				"-DNDEBUG",
+				"-DASSERTION_EXIT=0"
 			],
 			"cflags_cc": [
 				# "-std=c++17",
 				"-O2",
 				"-Wall",
-				"-Wextra"
+				"-Wextra",
+				"-DNDEBUG",
+				"-DASSERTION_EXIT=0"
 			],
 			"conditions": [
 				[
@@ -49,13 +54,17 @@
 							"OTHER_CFLAGS": [
 								"-Wall",
 								"-Wextra",
-								"-O2"
+								"-O2",
+								"-DNDEBUG",
+								"-DASSERTION_EXIT=0"
 							],
 							"OTHER_CPLUSPLUSFLAGS": [
 								"-std=c++17",
 								"-Wall",
 								"-Wextra",
-								"-O2"
+								"-O2",
+								"-DNDEBUG",
+								"-DASSERTION_EXIT=0"
 							]
 						},
 					}

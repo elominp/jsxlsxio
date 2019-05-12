@@ -13,12 +13,12 @@ static napi_value xlsxioread_sheet_next_cell_int_wrapper(
   int64_t value;
   napi_value ret;
 
-  assert(napi_get_cb_info(env, info, &argc, argv, NULL, NULL) == napi_ok);
-  assert(jsxlsxio_get_pointer(env, argv[0], (void **)&sheethandle) == napi_ok);
+  ASSERT(napi_get_cb_info(env, info, &argc, argv, NULL, NULL) == napi_ok);
+  ASSERT(jsxlsxio_get_pointer(env, argv[0], (void **)&sheethandle) == napi_ok);
   if (xlsxioread_sheet_next_cell_int(sheethandle, &value)) {
-    assert(napi_create_int64(env, value, &ret) == napi_ok);
+    ASSERT(napi_create_int64(env, value, &ret) == napi_ok);
   } else {
-    assert(napi_get_undefined(env, &ret) == napi_ok);
+    ASSERT(napi_get_undefined(env, &ret) == napi_ok);
   }
   return ret;
 }
@@ -26,7 +26,7 @@ static napi_value xlsxioread_sheet_next_cell_int_wrapper(
 napi_value create_xlsxioread_sheet_next_cell_int_wrapper(napi_env env) {
   napi_value xlsxioread_sheet_next_cell_int_function;
 
-  assert(napi_create_function(
+  ASSERT(napi_create_function(
              env, "xlsxioread_sheet_next_cell_int", NAPI_AUTO_LENGTH,
              xlsxioread_sheet_next_cell_int_wrapper, NULL,
              &xlsxioread_sheet_next_cell_int_function) == napi_ok);

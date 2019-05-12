@@ -11,17 +11,17 @@ static napi_value xlsxioread_open_filehandle_wrapper(napi_env env,
   xlsxioreader reader;
   napi_value ret;
 
-  assert(napi_get_cb_info(env, info, &argc, argv, NULL, NULL) == napi_ok);
-  assert(napi_get_value_int64(env, argv[0], &fd) == napi_ok);
-  assert((reader = xlsxioread_open_filehandle((int)fd)) != NULL);
-  assert(jsxlsxio_create_pointer(env, reader, &ret) == napi_ok);
+  ASSERT(napi_get_cb_info(env, info, &argc, argv, NULL, NULL) == napi_ok);
+  ASSERT(napi_get_value_int64(env, argv[0], &fd) == napi_ok);
+  ASSERT((reader = xlsxioread_open_filehandle((int)fd)) != NULL);
+  ASSERT(jsxlsxio_create_pointer(env, reader, &ret) == napi_ok);
   return ret;
 }
 
 napi_value create_xlsxioread_open_filehandle_wrapper(napi_env env) {
   napi_value xlsxioread_open_filehandle_function;
 
-  assert(napi_create_function(env, "xlsxioread_open_filehandle",
+  ASSERT(napi_create_function(env, "xlsxioread_open_filehandle",
                               NAPI_AUTO_LENGTH,
                               xlsxioread_open_filehandle_wrapper, NULL,
                               &xlsxioread_open_filehandle_function) == napi_ok);

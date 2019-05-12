@@ -33,17 +33,29 @@ fs.mkdir('deps', (err) => {
     if (platform === 'win32') {
       process.chdir('./contrib/vstudio/vc14');
       child_process.execSync(`msbuild zlibvc.sln /p:Configuration=${build_type};PlatformToolset=v141;WindowsTargetPlatformVersion=${windows_sdk_version}`);
-      fs.renameSync('./x64/ZlibStatRelease/zlibstat.lib', `${prefix}/lib/minizip.lib`);
+      fs.renameSync('./x64/ZlibStatRelease/zlibstat.lib', `${prefix}/lib/z.lib`);
       process.chdir('../../../..');
       fs.renameSync('./zlib', `${prefix}/include/zlib`);
-      fs.renameSync(`${prefix}/include/zlib/contrib/minizip`, `${prefix}/include/minizip`);
     } else {
-      fs.mkdirSync('./build');
+      fs.mkdirSync('build');
       process.chdir('./build');
       child_process.execSync(`cmake -DCMAKE_INSTALL_PREFIX=${prefix} -DCMAKE_BUILD_TYPE=${build_type} ..`);
       child_process.execSync('make install');
       process.chdir('../..');
     }
+
+    // Compilation of minizip library
+    child_process.execSync('git clone --single-branch --branch 1.2 https://github.com/nmoinvaz/minizip.git');
+    process.chdir('./minizip');
+    fs.mkdirSync('build');
+    process.chdir('./build');
+    child_process.execSync(`cmake -DCMAKE_INSTALL_PREFIX=${prefix} -DCMAKE_BUILD_TYPE=${build_type} -DZLIB_ROOT=${prefix} ..`);
+    if (platform === 'win32') {
+      console.log('Not yet supported');
+    } else {
+      child_process.execSync('make install');
+    }
+    process.chdir('../..');
 
     // Compilation of xlsxio library
     if (platform !== 'win32') {
@@ -51,7 +63,6 @@ fs.mkdir('deps', (err) => {
       process.chdir('./xlsxio');
       fs.mkdirSync('tmp');
       process.chdir('./tmp');
-      //child_process.execSync(`cmake -DCMAKE_INSTALL_PREFIX=${prefix} -DBUILD_TOOLS=OFF -DBUILD_EXAMPLES=OFF -DBUILD_SHARED=OFF -DCMAKE_BUILD_TYPE=${build_type} ..`);
       child_process.execSync(`cmake -DCMAKE_INSTALL_PREFIX=${prefix} -DBUILD_TOOLS=OFF -DBUILD_EXAMPLES=OFF -DBUILD_SHARED=OFF -DMINIZIP_LIBRARIES=${prefix}/lib -DMINIZIP_INCLUDE_DIRS=${prefix}/include -DEXPAT_LIBRARY=${prefix} -DCMAKE_BUILD_TYPE=${build_type} ..`);
       if (platform === 'win32') {
         child_process.execSync('msbuild xlsxio_read_STATIC.vcxproj');

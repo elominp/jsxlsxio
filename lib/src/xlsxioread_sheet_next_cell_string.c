@@ -13,16 +13,16 @@ static napi_value xlsxioread_sheet_next_cell_string_wrapper(
   XLSXIOCHAR* value;
   napi_value ret;
 
-  assert(napi_get_cb_info(env, info, &argc, argv, NULL, NULL) == napi_ok);
-  assert(jsxlsxio_get_pointer(env, argv[0], (void**)&sheethandle) == napi_ok);
+  ASSERT(napi_get_cb_info(env, info, &argc, argv, NULL, NULL) == napi_ok);
+  ASSERT(jsxlsxio_get_pointer(env, argv[0], (void**)&sheethandle) == napi_ok);
   if (xlsxioread_sheet_next_cell_string(sheethandle, &value) && value != NULL) {
-    assert(napi_create_string_utf8(env, value, strlen(value), &ret) == napi_ok);
+    ASSERT(napi_create_string_utf8(env, value, strlen(value), &ret) == napi_ok);
 #ifndef _WIN32  // TODO : freeing value on windows cause node to stop without
                 // any log but works on UNIX
     free(value);
 #endif  // _WIN32
   } else {
-    assert(napi_get_undefined(env, &ret) == napi_ok);
+    ASSERT(napi_get_undefined(env, &ret) == napi_ok);
   }
   return ret;
 }
@@ -30,7 +30,7 @@ static napi_value xlsxioread_sheet_next_cell_string_wrapper(
 napi_value create_xlsxioread_sheet_next_cell_string_wrapper(napi_env env) {
   napi_value xlsxioread_sheet_next_cell_string_function;
 
-  assert(napi_create_function(
+  ASSERT(napi_create_function(
              env, "xlsxioread_sheet_next_cell_string", NAPI_AUTO_LENGTH,
              xlsxioread_sheet_next_cell_string_wrapper, NULL,
              &xlsxioread_sheet_next_cell_string_function) == napi_ok);

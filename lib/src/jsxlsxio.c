@@ -33,9 +33,19 @@ static const wrapper_setter setters[] = {
     set_xlsxioread_sheet_open_wrapper,
     NULL};
 
+void init_log_streams(void) {
+  log_stdout = stdout;
+  log_stdinf = stdout;
+  log_stddbg = stdout;
+  log_stdwrn = stdout;
+  log_stderr = stderr;
+  atexit(flush_logs);
+}
+
 napi_value Init(napi_env env, napi_value exports) {
+  init_log_streams();
   for (size_t i = 0; setters[i] != NULL; i++) {
-    assert(setters[i](env, exports) == napi_ok);
+    EXPECT(setters[i](env, exports) == napi_ok);
   }
   return exports;
 }
