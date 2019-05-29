@@ -16,6 +16,9 @@
 #include "xlsxioread_sheet_next_cell_string.h"
 #include "xlsxioread_sheet_next_row.h"
 #include "xlsxioread_sheet_open.h"
+#include "xlsxioread_sheetlist_close.h"
+#include "xlsxioread_sheetlist_next.h"
+#include "xlsxioread_sheetlist_open.h"
 
 static const wrapper_setter setters[] = {
     set_xlsxioread_close_wrapper,
@@ -33,6 +36,9 @@ static const wrapper_setter setters[] = {
     set_xlsxioread_sheet_next_cell_string_wrapper,
     set_xlsxioread_sheet_next_row_wrapper,
     set_xlsxioread_sheet_open_wrapper,
+    set_xlsxioread_sheetlist_close_wrapper,
+    set_xlsxioread_sheetlist_next_wrapper,
+    set_xlsxioread_sheetlist_open_wrapper,
     NULL};
 
 void init_log_streams(void) {
