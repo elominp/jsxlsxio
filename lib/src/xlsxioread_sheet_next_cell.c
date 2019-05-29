@@ -18,10 +18,7 @@ static napi_value xlsxioread_sheet_next_cell_wrapper(napi_env env,
   value = xlsxioread_sheet_next_cell(sheethandle);
   if (value != NULL) {
     ASSERT(napi_create_string_utf8(env, value, strlen(value), &ret) == napi_ok);
-#ifndef _WIN32  // TODO : freeing value on windows cause node to stop without
-                // any log but works on UNIX
     free(value);
-#endif  // _WIN32
   } else {
     ASSERT(napi_get_undefined(env, &ret) == napi_ok);
   }
