@@ -7,6 +7,7 @@
 #include "xlsxioread_open.h"
 #include "xlsxioread_open_filehandle.h"
 #include "xlsxioread_open_memory.h"
+#include "xlsxioread_process.h"
 #include "xlsxioread_sheet_close.h"
 #include "xlsxioread_sheet_next_cell.h"
 #include "xlsxioread_sheet_next_cell_datetime.h"
@@ -23,6 +24,7 @@ static const wrapper_setter setters[] = {
     set_xlsxioread_open_wrapper,
     set_xlsxioread_open_filehandle_wrapper,
     set_xlsxioread_open_memory_wrapper,
+    set_xlsxioread_process_wrapper,
     set_xlsxioread_sheet_close_wrapper,
     set_xlsxioread_sheet_next_cell_wrapper,
     set_xlsxioread_sheet_next_cell_datetime_wrapper,

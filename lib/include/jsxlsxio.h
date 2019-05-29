@@ -22,9 +22,11 @@ void flush_logs(void);
 #ifdef __cplusplus
 #include <cstdio>
 #include <cstdlib>
+#include <cassert>
 #else
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
 #endif  // __cplusplus
 
 extern FILE *log_stdout;
