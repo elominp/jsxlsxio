@@ -24,7 +24,7 @@ static napi_value xlsxioread_sheet_open_wrapper(napi_env env,
     if (sheetname_type == napi_string) {
       ASSERT(napi_get_value_string_utf8(env, argv[1], buffer, BUFFER_SIZE,
                                         &sheetname_length) == napi_ok);
-      ASSERT(sheetname_length >= 0);
+      ASSERT(sheetname_length >= 0 && sheetname_length < BUFFER_SIZE);
       buffer[sheetname_length] = '\0';
     }
   }

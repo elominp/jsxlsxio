@@ -15,7 +15,7 @@ static napi_value xlsxioread_open_wrapper(napi_env env,
   ASSERT(napi_get_cb_info(env, info, &argc, argv, NULL, NULL) == napi_ok);
   ASSERT(napi_get_value_string_utf8(env, argv[0], filename, BUFFER_SIZE,
                                     &filename_length) == napi_ok);
-  ASSERT(filename_length >= 0);
+  ASSERT(filename_length >= 0 && filename_length < BUFFER_SIZE);
   filename[filename_length] = '\0';
   ASSERT((reader = xlsxioread_open(filename)) != NULL);
   ASSERT(jsxlsxio_create_pointer(env, reader, &ret) == napi_ok);

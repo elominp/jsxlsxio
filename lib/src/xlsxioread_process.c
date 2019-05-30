@@ -85,6 +85,8 @@ static napi_value xlsxioread_process_wrapper(napi_env env,
   ASSERT(jsxlsxio_get_pointer(env, argv[0], (void **)&handle) == napi_ok);
   ASSERT(napi_get_value_string_utf8(env, argv[1], sheetname, BUFFER_SIZE,
                                     &sheetname_length) == napi_ok);
+  ASSERT(sheetname_length >= 0 && sheetname_length < BUFFER_SIZE);
+  sheetname[sheetname_length] = '\0';
   ASSERT(napi_get_value_uint32(env, argv[2], &flags) == napi_ok);
   if (cell_callback != NULL) {
     xlsxioread_process_destroy_napi_async();

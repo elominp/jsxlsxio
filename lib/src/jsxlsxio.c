@@ -2,6 +2,7 @@
 #include <assert.h>
 #include <stdlib.h>
 #include "xlsxioread_close.h"
+#include "xlsxioread_get_version_string.h"
 #include "xlsxioread_get_version.h"
 #include "xlsxioread_list_sheets.h"
 #include "xlsxioread_open.h"
@@ -19,9 +20,22 @@
 #include "xlsxioread_sheetlist_close.h"
 #include "xlsxioread_sheetlist_next.h"
 #include "xlsxioread_sheetlist_open.h"
+#include "xlsxiowrite_add_cell_datetime.h"
+#include "xlsxiowrite_add_cell_float.h"
+#include "xlsxiowrite_add_cell_int.h"
+#include "xlsxiowrite_add_cell_string.h"
+#include "xlsxiowrite_add_column.h"
+#include "xlsxiowrite_close.h"
+#include "xlsxiowrite_get_version_string.h"
+#include "xlsxiowrite_get_version.h"
+#include "xlsxiowrite_next_row.h"
+#include "xlsxiowrite_open.h"
+#include "xlsxiowrite_set_detection_rows.h"
+#include "xlsxiowrite_set_row_height.h"
 
 static const wrapper_setter setters[] = {
     set_xlsxioread_close_wrapper,
+    set_xlsxioread_get_version_string_wrapper,
     set_xlsxioread_get_version_wrapper,
     set_xlsxioread_list_sheets_wrapper,
     set_xlsxioread_open_wrapper,
@@ -39,6 +53,18 @@ static const wrapper_setter setters[] = {
     set_xlsxioread_sheetlist_close_wrapper,
     set_xlsxioread_sheetlist_next_wrapper,
     set_xlsxioread_sheetlist_open_wrapper,
+    set_xlsxiowrite_add_cell_datetime_wrapper,
+    set_xlsxiowrite_add_cell_float_wrapper,
+    set_xlsxiowrite_add_cell_int_wrapper,
+    set_xlsxiowrite_add_cell_string_wrapper,
+    set_xlsxiowrite_add_column_wrapper,
+    set_xlsxiowrite_close_wrapper,
+    set_xlsxiowrite_get_version_string_wrapper,
+    set_xlsxiowrite_get_version_wrapper,
+    set_xlsxiowrite_next_row_wrapper,
+    set_xlsxiowrite_open_wrapper,
+    set_xlsxiowrite_set_detection_rows_wrapper,
+    set_xlsxiowrite_set_row_height_wrapper,
     NULL};
 
 void init_log_streams(void) {
