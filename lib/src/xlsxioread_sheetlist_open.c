@@ -4,7 +4,7 @@
 #include "jsxlsxio_pointers.h"
 
 static napi_value xlsxioread_sheetlist_open_wrapper(napi_env env,
-                                          napi_callback_info info) {
+                                                    napi_callback_info info) {
   napi_value argv[1];
   size_t argc = 1;
   xlsxioreader reader;
@@ -21,13 +21,15 @@ static napi_value xlsxioread_sheetlist_open_wrapper(napi_env env,
 napi_value create_xlsxioread_sheetlist_open_wrapper(napi_env env) {
   napi_value xlsxioread_sheetlist_open_function;
 
-  ASSERT(napi_create_function(env, "xlsxioread_sheetlist_open", NAPI_AUTO_LENGTH,
+  ASSERT(napi_create_function(env, "xlsxioread_sheetlist_open",
+                              NAPI_AUTO_LENGTH,
                               xlsxioread_sheetlist_open_wrapper, NULL,
                               &xlsxioread_sheetlist_open_function) == napi_ok);
   return xlsxioread_sheetlist_open_function;
 }
 
-napi_status set_xlsxioread_sheetlist_open_wrapper(napi_env env, napi_value result) {
+napi_status set_xlsxioread_sheetlist_open_wrapper(napi_env env,
+                                                  napi_value result) {
   return napi_set_named_property(env, result, "xlsxioread_sheetlist_open",
                                  create_xlsxioread_sheetlist_open_wrapper(env));
 }

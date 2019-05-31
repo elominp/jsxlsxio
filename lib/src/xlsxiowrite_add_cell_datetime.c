@@ -1,11 +1,11 @@
-#include <time.h>
 #include "xlsxiowrite_add_cell_datetime.h"
 #include <assert.h>
+#include <time.h>
 #include <xlsxio_write.h>
 #include "jsxlsxio_pointers.h"
 
-static napi_value xlsxiowrite_add_cell_datetime_wrapper(napi_env env,
-                                          napi_callback_info info) {
+static napi_value xlsxiowrite_add_cell_datetime_wrapper(
+    napi_env env, napi_callback_info info) {
   napi_value argv[2];
   size_t argc = 2;
   xlsxiowriter writer;
@@ -23,13 +23,16 @@ static napi_value xlsxiowrite_add_cell_datetime_wrapper(napi_env env,
 napi_value create_xlsxiowrite_add_cell_datetime_wrapper(napi_env env) {
   napi_value xlsxiowrite_add_cell_datetime_function;
 
-  ASSERT(napi_create_function(env, "xlsxiowrite_add_cell_datetime", NAPI_AUTO_LENGTH,
-                              xlsxiowrite_add_cell_datetime_wrapper, NULL,
-                              &xlsxiowrite_add_cell_datetime_function) == napi_ok);
+  ASSERT(napi_create_function(
+             env, "xlsxiowrite_add_cell_datetime", NAPI_AUTO_LENGTH,
+             xlsxiowrite_add_cell_datetime_wrapper, NULL,
+             &xlsxiowrite_add_cell_datetime_function) == napi_ok);
   return xlsxiowrite_add_cell_datetime_function;
 }
 
-napi_status set_xlsxiowrite_add_cell_datetime_wrapper(napi_env env, napi_value result) {
-  return napi_set_named_property(env, result, "xlsxiowrite_add_cell_datetime",
-                                 create_xlsxiowrite_add_cell_datetime_wrapper(env));
+napi_status set_xlsxiowrite_add_cell_datetime_wrapper(napi_env env,
+                                                      napi_value result) {
+  return napi_set_named_property(
+      env, result, "xlsxiowrite_add_cell_datetime",
+      create_xlsxiowrite_add_cell_datetime_wrapper(env));
 }

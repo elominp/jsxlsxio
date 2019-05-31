@@ -4,7 +4,7 @@
 #include "jsxlsxio_pointers.h"
 
 static napi_value xlsxiowrite_next_row_wrapper(napi_env env,
-                                          napi_callback_info info) {
+                                               napi_callback_info info) {
   napi_value argv[1];
   size_t argc = 1;
   xlsxiowriter writer;
