@@ -63,7 +63,9 @@
 					'OS == "mac"',
 					{
 						"libraries": [
+							"-L../deps/lib",
 	  	  			"-lxlsxio_read",
+							"-lxlsxio_write",
 							"-lexpat",
 							"-lminizip"
 	  				],
@@ -109,6 +111,7 @@
 					'OS == "linux"',
 					{
 						"libraries": [
+							"-L../deps/lib",
 	  	  			"-lxlsxio_read",
 							"-lxlsxio_write",
 							"-lexpat",

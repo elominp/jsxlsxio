@@ -1,5 +1,6 @@
 #include "xlsxioread_process.h"
 #include <xlsxio_read.h>
+#include <string.h>
 #include "jsxlsxio_pointers.h"
 
 static napi_ref cell_callback = NULL;

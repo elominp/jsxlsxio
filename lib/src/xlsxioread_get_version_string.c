@@ -1,5 +1,6 @@
 #include "xlsxioread_get_version_string.h"
 #include <assert.h>
+#include <string.h>
 #include <xlsxio_read.h>
 
 static napi_value xlsxioread_get_version_string_wrapper(

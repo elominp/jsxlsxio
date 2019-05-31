@@ -14,7 +14,7 @@ static napi_value xlsxiowrite_add_cell_datetime_wrapper(
 
   ASSERT(napi_get_cb_info(env, info, &argc, argv, NULL, NULL) == napi_ok);
   ASSERT(jsxlsxio_get_pointer(env, argv[0], (void **)&writer) == napi_ok);
-  ASSERT(napi_get_value_int64(env, argv[1], (time_t *)&value) == napi_ok);
+  ASSERT(napi_get_value_int64(env, argv[1], (int64_t *)&value) == napi_ok);
   xlsxiowrite_add_cell_datetime(writer, value);
   ASSERT(napi_get_undefined(env, &ret) == napi_ok);
   return ret;
