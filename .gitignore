@@ -282,3 +282,4 @@ prebuilt/
 deps/
 
 test/node*
+*.old
