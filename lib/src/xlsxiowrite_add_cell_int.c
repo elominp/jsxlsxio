@@ -4,7 +4,7 @@
 #include "jsxlsxio_pointers.h"
 
 static napi_value xlsxiowrite_add_cell_int_wrapper(napi_env env,
-                                          napi_callback_info info) {
+                                                   napi_callback_info info) {
   napi_value argv[2];
   size_t argc = 2;
   xlsxiowriter writer;
@@ -28,7 +28,8 @@ napi_value create_xlsxiowrite_add_cell_int_wrapper(napi_env env) {
   return xlsxiowrite_add_cell_int_function;
 }
 
-napi_status set_xlsxiowrite_add_cell_int_wrapper(napi_env env, napi_value result) {
+napi_status set_xlsxiowrite_add_cell_int_wrapper(napi_env env,
+                                                 napi_value result) {
   return napi_set_named_property(env, result, "xlsxiowrite_add_cell_int",
                                  create_xlsxiowrite_add_cell_int_wrapper(env));
 }

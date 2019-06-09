@@ -3,7 +3,7 @@
 #include <xlsxio_write.h>
 
 static napi_value xlsxiowrite_get_version_wrapper(napi_env env,
-                                                 napi_callback_info info) {
+                                                  napi_callback_info info) {
   (void)info;
 
   napi_value ret;
@@ -35,7 +35,7 @@ napi_value create_xlsxiowrite_get_version_wrapper(napi_env env) {
 }
 
 napi_status set_xlsxiowrite_get_version_wrapper(napi_env env,
-                                               napi_value result) {
+                                                napi_value result) {
   return napi_set_named_property(env, result, "xlsxiowrite_get_version",
                                  create_xlsxiowrite_get_version_wrapper(env));
 }

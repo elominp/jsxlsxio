@@ -7,7 +7,8 @@
 extern "C" {
 #endif  // __cplusplus
 napi_value create_xlsxioread_sheetlist_next_wrapper(napi_env env);
-napi_status set_xlsxioread_sheetlist_next_wrapper(napi_env env, napi_value result);
+napi_status set_xlsxioread_sheetlist_next_wrapper(napi_env env,
+                                                  napi_value result);
 #ifdef __cplusplus
 }
 #endif  // __cplusplus

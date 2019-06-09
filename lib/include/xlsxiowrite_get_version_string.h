@@ -7,7 +7,8 @@
 extern "C" {
 #endif  // __cplusplus
 napi_value create_xlsxiowrite_get_version_string_wrapper(napi_env env);
-napi_status set_xlsxiowrite_get_version_string_wrapper(napi_env env, napi_value result);
+napi_status set_xlsxiowrite_get_version_string_wrapper(napi_env env,
+                                                       napi_value result);
 #ifdef __cplusplus
 }
 #endif  // __cplusplus

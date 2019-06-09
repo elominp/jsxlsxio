@@ -4,7 +4,7 @@
 #include "jsxlsxio_pointers.h"
 
 static napi_value xlsxiowrite_open_wrapper(napi_env env,
-                                          napi_callback_info info) {
+                                           napi_callback_info info) {
   napi_value argv[2];
   size_t argc = 2;
   char filename[BUFFER_SIZE];
@@ -17,7 +17,8 @@ static napi_value xlsxiowrite_open_wrapper(napi_env env,
   ASSERT(napi_get_cb_info(env, info, &argc, argv, NULL, NULL) == napi_ok);
   ASSERT(napi_get_value_string_utf8(env, argv[0], filename, BUFFER_SIZE,
                                     &filename_length) == napi_ok);
-  ASSERT(napi_get_value_string_utf8(env, argv[1], sheetname, BUFFER_SIZE, &sheetname_length) == napi_ok);
+  ASSERT(napi_get_value_string_utf8(env, argv[1], sheetname, BUFFER_SIZE,
+                                    &sheetname_length) == napi_ok);
   ASSERT(filename_length >= 0 && filename_length < BUFFER_SIZE)
   ASSERT(sheetname_length >= 0 && sheetname_length < BUFFER_SIZE);
   filename[filename_length] = '\0';

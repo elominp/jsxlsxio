@@ -20,13 +20,13 @@ void flush_logs(void);
 #endif  // __cplusplus
 
 #ifdef __cplusplus
+#include <cassert>
 #include <cstdio>
 #include <cstdlib>
-#include <cassert>
 #else
+#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <assert.h>
 #endif  // __cplusplus
 
 extern FILE *log_stdout;
@@ -50,13 +50,27 @@ extern const char *expect_header;
 
 #ifdef NDEBUG
 #if ASSERTION_EXIT
-#define ASSERT(cdt) if (!(cdt)) { LOG_E("%s %s %s - line %d: %s\n", assert_header, __FILE__, __func__, __LINE__, #cdt); exit(1); }
+#define ASSERT(cdt)                                                      \
+  if (!(cdt)) {                                                          \
+    LOG_E("%s %s %s - line %d: %s\n", assert_header, __FILE__, __func__, \
+          __LINE__, #cdt);                                               \
+    exit(1);                                                             \
+  }
 #else
-#define ASSERT(cdt) if (!(cdt)) { LOG_E("%s %s %s - line %d: %s\n", assert_header, __FILE__, __func__, __LINE__, #cdt); return 0; }
+#define ASSERT(cdt)                                                      \
+  if (!(cdt)) {                                                          \
+    LOG_E("%s %s %s - line %d: %s\n", assert_header, __FILE__, __func__, \
+          __LINE__, #cdt);                                               \
+    return 0;                                                            \
+  }
 #endif  // ASSERTION_EXIT
 #else
 #define ASSERT(cdt) assert(cdt);
 #endif  // NDEBUG
-#define EXPECT(cdt) if (!(cdt)) { LOG_W("%s %s %s - line %d: %s\n", expect_header, __FILE__, __func__, __LINE__, #cdt); }
+#define EXPECT(cdt)                                                      \
+  if (!(cdt)) {                                                          \
+    LOG_W("%s %s %s - line %d: %s\n", expect_header, __FILE__, __func__, \
+          __LINE__, #cdt);                                               \
+  }
 
 #endif  // JSXLSXIO_H

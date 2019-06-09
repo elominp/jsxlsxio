@@ -1,5 +1,6 @@
-#include <xlsxio_read.h>
 #include "xlsxioread_process.h"
+#include <xlsxio_read.h>
+#include <string.h>
 #include "jsxlsxio_pointers.h"
 
 static napi_ref cell_callback = NULL;
@@ -10,7 +11,7 @@ static napi_env async_env = NULL;
 
 static int xlsxioread_process_init_napi_async(napi_env env) {
   napi_value name;
-  const char *resource_name = "xlsxioread_process_async";
+  const char* resource_name = "xlsxioread_process_async";
 
   async_env = env;
   ASSERT(napi_create_string_utf8(env, resource_name, strlen(resource_name),
@@ -27,7 +28,8 @@ static int xlsxioread_process_destroy_napi_async(void) {
   return 0;
 }
 
-static int xlsxioread_process_row_callback(size_t row, size_t maxcol, void* callbackdata) {
+static int xlsxioread_process_row_callback(size_t row, size_t maxcol,
+                                           void* callbackdata) {
   (void)callbackdata;
 
   napi_value argv[3];
@@ -46,7 +48,9 @@ static int xlsxioread_process_row_callback(size_t row, size_t maxcol, void* call
   return 0;
 }
 
-static int xlsxioread_process_cell_callback(size_t row, size_t col, const XLSXIOCHAR* value, void* callbackdata) {
+static int xlsxioread_process_cell_callback(size_t row, size_t col,
+                                            const XLSXIOCHAR* value,
+                                            void* callbackdata) {
   (void)callbackdata;
 
   napi_value argv[4];
@@ -72,7 +76,7 @@ static int xlsxioread_process_cell_callback(size_t row, size_t col, const XLSXIO
 }
 
 static napi_value xlsxioread_process_wrapper(napi_env env,
-                                                 napi_callback_info info) {
+                                             napi_callback_info info) {
   napi_value argv[6];
   size_t argc = 6;
   xlsxioreader handle;
@@ -82,7 +86,7 @@ static napi_value xlsxioread_process_wrapper(napi_env env,
   napi_value ret;
 
   ASSERT(napi_get_cb_info(env, info, &argc, argv, NULL, NULL) == napi_ok);
-  ASSERT(jsxlsxio_get_pointer(env, argv[0], (void **)&handle) == napi_ok);
+  ASSERT(jsxlsxio_get_pointer(env, argv[0], (void**)&handle) == napi_ok);
   ASSERT(napi_get_value_string_utf8(env, argv[1], sheetname, BUFFER_SIZE,
                                     &sheetname_length) == napi_ok);
   ASSERT(sheetname_length >= 0 && sheetname_length < BUFFER_SIZE);
@@ -103,8 +107,8 @@ static napi_value xlsxioread_process_wrapper(napi_env env,
   }
   ASSERT(napi_create_reference(env, argv[5], 1, &callback_data) == napi_ok);
   xlsxioread_process_init_napi_async(env);
-  xlsxioread_process(handle, sheetname, flags, xlsxioread_process_cell_callback, xlsxioread_process_row_callback,
-                         callback_data);
+  xlsxioread_process(handle, sheetname, flags, xlsxioread_process_cell_callback,
+                     xlsxioread_process_row_callback, callback_data);
   napi_get_undefined(env, &ret);
   return ret;
 }
@@ -118,8 +122,7 @@ napi_value create_xlsxioread_process_wrapper(napi_env env) {
   return xlsxioread_process_function;
 }
 
-napi_status set_xlsxioread_process_wrapper(napi_env env,
-                                               napi_value result) {
+napi_status set_xlsxioread_process_wrapper(napi_env env, napi_value result) {
   return napi_set_named_property(env, result, "xlsxioread_process",
                                  create_xlsxioread_process_wrapper(env));
 }
