@@ -30,6 +30,7 @@
     "binding.gyp",
     "index.js",
     "LICENSE",
+    "README.md",
     "package.json",
     "package-lock.json"
   ]
