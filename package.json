@@ -1,6 +1,6 @@
 {
   "name": "jsxlsxio",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Node.js wrapper of xlsxio library to manipulate Excel files",
   "main": "index.js",
   "scripts": {
