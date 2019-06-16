@@ -4,10 +4,11 @@ const fs = require('fs');
 console.log(jsxlsxio.xlsxioread_get_version());
 
 const file = jsxlsxio.xlsxioread_open('place-de-la-nation-flux.xlsx');
-const fd = fs.openSync('log.txt', 'w');
+const fd = fs.openSync('log2.txt', 'w');
 const buf_length = 8388608;
 var buf = Buffer.allocUnsafe(buf_length).fill('\0');
 var idx = 0;
+var finished = false;
 
 function print_sheet_name(name, data) {
     console.log(name);
@@ -31,22 +32,18 @@ function buffered_write(fd, data) {
     }
 }
 
-const sheet = jsxlsxio.xlsxioread_sheet_open(file, undefined, 0);
-
-while (jsxlsxio.xlsxioread_sheet_next_row(sheet)) {
-    var line = '';
-    while (1) {
-        const value = jsxlsxio.xlsxioread_sheet_next_cell(sheet);
-        if (typeof (value) === 'undefined') {
-            break;
-        }
-        line += value + ';'
+jsxlsxio.xlsxioread_process(file, undefined, 0, (row, col, value, data) => {
+    if (typeof(value) !== 'undefined') {
+        buffered_write(fd, value + ';');
+    } else {
+        buffered_write(fd, ';');
     }
-    line += '\n'
-    buffered_write(fd, line);
-}
+},
+(row, maxcol, data) => {
+    buffered_write(fd, '\n');
+},
+buf);
 
-jsxlsxio.xlsxioread_sheet_close(sheet);
 jsxlsxio.xlsxioread_close(file);
 flush_buffered_write(fd);
 fs.closeSync(fd);

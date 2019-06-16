@@ -58,13 +58,6 @@
             "ASSERTION_EXIT=0",
             "STATIC"
         ],
-        "libraries": [
-            "-L../deps/lib",
-            "-lxlsxio_read",
-            "-lxlsxio_write",
-            "-lexpat",
-            "-lminizip"
-        ],
         "conditions": [
         [
             'OS == "mac"',
@@ -101,10 +94,10 @@
             'OS == "win"',
             {
                 "libraries": [
-                    "-l../deps/lib/xlsxio_read.lib",
-                    "-l../deps/lib/xlsxio_write.lib",
-                    "-l../deps/lib/zlib.lib",
-                    "-l../deps/lib/expat.lib"
+                    "../deps/lib/xlsxio_read.lib",
+                    "../deps/lib/xlsxio_write.lib",
+                    "../deps/lib/zlib.lib",
+                    "../deps/lib/expat.lib"
                 ],
                 "defines": [
                     "NDEBUG",

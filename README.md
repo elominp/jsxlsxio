@@ -196,7 +196,7 @@ All functions related to the reading of an Excel file are exposed on the `xlsxio
 - `xlsxiowrite_close(worksheet)`
   + Parameters:
     - `worksheet`: a pointer (a `number`) on the worksheet to close
-  + Return: nothing (`undefined`)
+  + Return: 0 on success
   + Description: closes the worksheet on the pointer passed as parameter
 - `xlsxiowrite_get_version()`
   + Parameters: nothing
@@ -248,7 +248,7 @@ All functions related to the reading of an Excel file are exposed on the `xlsxio
     - `value`: content to write in the cell added in the worksheet as a `number`
   + Return: nothing (`undefined`)
   + Description: set the content of the cell to add in worksheet
-- `xlsxiowrite_add_cell_datetoùe(worksheet, value)`
+- `xlsxiowrite_add_cell_datetime(worksheet, value)`
   + Parameters:
     - `worksheet`: a pointer (a `number`) on the worksheet to use
     - `value`: content to write in the cell added in the worksheet as a `number` (represented by a timestamp)

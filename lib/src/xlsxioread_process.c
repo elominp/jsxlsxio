@@ -68,7 +68,7 @@ static int xlsxioread_process_cell_callback(size_t row, size_t col,
   }
   ASSERT(napi_get_reference_value(async_env, (napi_ref)callback_data,
                                   &argv[3]) == napi_ok);
-  ASSERT(napi_get_reference_value(async_env, row_callback, &tocall) == napi_ok);
+  ASSERT(napi_get_reference_value(async_env, cell_callback, &tocall) == napi_ok);
   ASSERT(napi_get_global(async_env, &global) == napi_ok);
   ASSERT(napi_make_callback(async_env, async_context, global, tocall, 4, argv,
                             &ret) == napi_ok);
@@ -82,15 +82,23 @@ static napi_value xlsxioread_process_wrapper(napi_env env,
   xlsxioreader handle;
   char sheetname[BUFFER_SIZE];
   size_t sheetname_length;
+  char *sheetname_ptr = NULL;
   uint32_t flags;
   napi_value ret;
 
   ASSERT(napi_get_cb_info(env, info, &argc, argv, NULL, NULL) == napi_ok);
   ASSERT(jsxlsxio_get_pointer(env, argv[0], (void**)&handle) == napi_ok);
-  ASSERT(napi_get_value_string_utf8(env, argv[1], sheetname, BUFFER_SIZE,
-                                    &sheetname_length) == napi_ok);
-  ASSERT(sheetname_length >= 0 && sheetname_length < BUFFER_SIZE);
-  sheetname[sheetname_length] = '\0';
+  if (argv[1] != NULL) {
+    napi_status status = napi_get_value_string_utf8(env, argv[1], sheetname, BUFFER_SIZE, &sheetname_length);
+    ASSERT(status == napi_ok || status == napi_string_expected);
+    if (status == napi_ok) {
+      ASSERT(sheetname_length >= 0 && sheetname_length < BUFFER_SIZE);
+      sheetname[sheetname_length] = '\0';
+      if (strcmp(sheetname, "")) {
+        sheetname_ptr = sheetname;
+      }
+    }
+  }
   ASSERT(napi_get_value_uint32(env, argv[2], &flags) == napi_ok);
   if (cell_callback != NULL) {
     xlsxioread_process_destroy_napi_async();
@@ -107,7 +115,7 @@ static napi_value xlsxioread_process_wrapper(napi_env env,
   }
   ASSERT(napi_create_reference(env, argv[5], 1, &callback_data) == napi_ok);
   xlsxioread_process_init_napi_async(env);
-  xlsxioread_process(handle, sheetname, flags, xlsxioread_process_cell_callback,
+  xlsxioread_process(handle, sheetname_ptr, flags, xlsxioread_process_cell_callback,
                      xlsxioread_process_row_callback, callback_data);
   napi_get_undefined(env, &ret);
   return ret;

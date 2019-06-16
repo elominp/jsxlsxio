@@ -6,7 +6,7 @@ const platform = process.platform;
 const arch = process.arch;
 const module_name = 'jsxlsxio';
 const addon_name = `${module_name}-${platform}-${arch}.node`;
-const version = "0.2.0";
+const version = "0.2.2";
 
 function onInstallFailure(err) {
     console.log(`${err}: Unable to install prebuilt module, falling back to compiling it`);

@@ -1,6 +1,6 @@
 {
   "name": "jsxlsxio",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Node.js wrapper of xlsxio library to manipulate Excel files",
   "main": "index.js",
   "scripts": {
@@ -15,12 +15,15 @@
     "rebuild:debug": "npm run clean && npm run compile:debug",
     "rebuild:i686": "npm run clean && npm run compile:i686",
     "rebuild:i686-debug": "npm run clean && npm run compile:i686-debug",
-    "test": "echo \"Error: no test specified\""
+    "test": "jest --verbose --watch false"
   },
   "author": "Guillaume Pirou <guillaume.pirou@epitech.eu>",
   "license": "MIT",
   "dependencies": {
     "bindings": "^1.5.0"
+  },
+  "devDependencies": {
+    "jest": "^24.8.0"
   },
   "gypfile": true,
   "files": [
